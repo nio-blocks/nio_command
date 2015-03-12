@@ -1,3 +1,6 @@
+import base64
+import requests
+from enum import Enum
 from nio.metadata.properties import IntProperty, ListProperty, \
     SelectProperty, ObjectProperty, PropertyHolder, StringProperty, \
     TimeDeltaProperty, ExpressionProperty
@@ -6,10 +9,7 @@ from nio.common.discovery import Discoverable, DiscoverableType
 from nio.common.signal.base import Signal
 from nio.modules.scheduler import Job
 from urllib.parse import urlencode
-import base64
 from .oauth2_mixin.oauth2 import OAuth2, OAuth2Exception
-import requests
-from enum import Enum
 
 
 class SecurityMethod(Enum):
@@ -29,7 +29,7 @@ class BasicAuthCreds(PropertyHolder):
 
 
 @Discoverable(DiscoverableType.block)
-class NioCommand(Block, OAuth2):
+class NioCommand(OAuth2, Block):
 
     params = ListProperty(URLParameter,
                           title="Command Parameters",
@@ -66,15 +66,18 @@ class NioCommand(Block, OAuth2):
             self._init_access_token()
 
     def process_signals(self, signals):
+        output_sigs = []
         for signal in signals:
             try:
                 url, headers = self._get_url(signal)
-                resp = requests.get(url, headers=headers)
-                sigs = self._process_response(resp)
-                if sigs:
-                    self.notify_signals(sigs)
-            except Exception as e:
-                self._logger.exception(e)
+                if url:
+                    resp = requests.get(url, headers=headers)
+                    sigs = self._process_response(resp)
+                    output_sigs.extend(sigs)
+            except Exception:
+                self._logger.exception('Failed to process signals')
+        if output_sigs:
+            self.notify_signals(output_sigs)
 
     def _process_response(self, resp):
         status = resp.status_code
@@ -113,9 +116,8 @@ class NioCommand(Block, OAuth2):
                 self._reauth_job = Job(
                     self._init_access_token, self.reauth_interval, False)
 
-        except OAuth2Exception as oae:
-            self._logger.error(
-                "Error obtaining access token: {}".format(oae))
+        except OAuth2Exception:
+            self._logger.exception('Error obtaining access token')
             self._access_token = None
 
     def _get_params(self, signal):
@@ -124,9 +126,8 @@ class NioCommand(Block, OAuth2):
         for param in self.params:
             try:
                 params[param.prop_name(signal)] = param.prop_value(signal)
-            except Exception as e:
-                self._logger.error(
-                    'Failed to evaluate command params'.format(e))
+            except Exception:
+                self._logger.exception('Failed to evaluate command params')
         return params
 
     def _get_url(self, signal):
@@ -134,12 +135,11 @@ class NioCommand(Block, OAuth2):
             service = self.service_name(signal)
             block = self.block_name(signal)
             command = self.command_name(signal)
-        except Exception as e:
-            self._logger.warning(
-                'Failed to evaluate command definition: {}'.format(e))
+        except Exception:
+            self._logger.exception('Failed to evaluate command definition')
             return None, None
         if not service or not command:
-            self._logger.warning(
+            self._logger.error(
                 '`Service Name` and `Command Name` are required parameters')
             return None, None
         if not block:
