@@ -47,7 +47,7 @@ Any list of signals.
 
 Output
 ---------
-One output signal will be created for each command (and therefore one fore each input signal).
+One output signal will be created for each command (and therefore one for each input signal).
 
 If the command response is json, then the Signal representation of the json will be emitted.
 
