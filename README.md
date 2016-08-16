@@ -18,12 +18,12 @@ Properties
 
 Dependencies
 ----------------
-- oauth2client
-- pycrypto or pyopenssl
+- [oauth2client](https://github.com/google/oauth2client)
+- [pycrypto](https://pypi.python.org/pypi/pycrypto) or [pyopenssl](https://pypi.python.org/pypi/pyOpenSSL)
 
 ## Getting Started with OAuth
 
-In order to command a nio instance secured by OAuth you will need a Google Service Account and access to its JSON key.
+In order to command a nio instance secured by OAuth, you will need a Google Service Account and access to its JSON key.
 
 1. Go to the [Google Developers Console](https://console.developers.google.com/). Select your project (or create one!)
 2. Go to **APIs & Auth** > **Credentials**
