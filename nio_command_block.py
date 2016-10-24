@@ -24,8 +24,8 @@ class URLParameter(PropertyHolder):
 
 
 class BasicAuthCreds(PropertyHolder):
-    username = StringProperty(title='Username', default='Admin')
-    password = StringProperty(title='Password', default='Admin')
+    username = StringProperty(title='Username', default='')
+    password = StringProperty(title='Password', default='')
 
 
 class NioCommand(OAuth2ServiceAccount, Block):
@@ -35,9 +35,9 @@ class NioCommand(OAuth2ServiceAccount, Block):
                           default=[])
     host = StringProperty(title="n.io Host", default="[[NIOHOST]]")
     port = IntProperty(title="n.io Port", default="[[NIOPORT]]")
-    service_name = Property(title="Service Name", allow_none=True)
-    block_name = Property(title="Block Name (optional)", allow_none=True)
-    command_name = Property(title="Command Name", allow_none=True)
+    service_name = Property(title="Service Name", default='')
+    block_name = Property(title="Block Name (optional)", default='')
+    command_name = Property(title="Command Name", default='')
     security_method = SelectProperty(SecurityMethod,
                                      default=SecurityMethod.BASIC,
                                      title='Security Method')
@@ -73,8 +73,8 @@ class NioCommand(OAuth2ServiceAccount, Block):
                     resp = requests.get(url, headers=headers)
                     sigs = self._process_response(resp)
                     output_sigs.extend(sigs)
-            except Exception as e:
-                self.logger.exception('Failed to process signals: %s' % e)
+            except Exception:
+                self.logger.exception('Failed to process signals: %s')
         if output_sigs:
             self.notify_signals(output_sigs)
 
