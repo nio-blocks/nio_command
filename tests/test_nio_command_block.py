@@ -1,7 +1,7 @@
-from nio.common.signal.base import Signal
+from nio.signal.base import Signal
 from unittest.mock import MagicMock, patch
 from ..nio_command_block import NioCommand, OAuth2Exception, SecurityMethod
-from nio.util.support.block_test_case import NIOBlockTestCase
+from nio.testing.block_test_case import NIOBlockTestCase
 from requests import Response
 from collections import OrderedDict
 
@@ -122,6 +122,7 @@ class TestNioCommandBlock(NIOBlockTestCase):
         self.assertEqual(headers['Authorization'], 'Basic QWRtaW46QWRtaW4=')
         # test with oauth
         block._init_access_token = MagicMock()
+        block._oauth_token = {'access_token': 'asdf1234'}
         block._access_token = 'asdf1234'
         self.configure_block(block, {'security_method': SecurityMethod.OAUTH})
         headers = block._get_headers()
