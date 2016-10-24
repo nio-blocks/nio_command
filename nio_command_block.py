@@ -74,7 +74,7 @@ class NioCommand(OAuth2ServiceAccount, Block):
                     sigs = self._process_response(resp)
                     output_sigs.extend(sigs)
             except Exception:
-                self.logger.exception('Failed to process signals: %s')
+                self.logger.exception('Failed to process signals')
         if output_sigs:
             self.notify_signals(output_sigs)
 
