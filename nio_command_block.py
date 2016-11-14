@@ -65,14 +65,17 @@ class NioCommand(OAuth2ServiceAccount, Block):
             self._init_access_token()
 
     def process_signals(self, signals):
+        self.logger.debug('processing signals: {}'.format(signals))
         output_sigs = []
         for signal in signals:
             try:
                 url, headers = self._get_url(signal)
                 if url:
+                    self.logger.debug('processing URL: {}'.format(url))
                     resp = requests.get(url, headers=headers)
                     sigs = self._process_response(resp)
                     output_sigs.extend(sigs)
+                    self.logger.debug('outputting sig {}, current list: {}'.format(sigs, output_sigs))
             except Exception:
                 self.logger.exception('Failed to process signals')
         if output_sigs:
@@ -98,7 +101,7 @@ class NioCommand(OAuth2ServiceAccount, Block):
             for d in data:
                 sigs.extend(self._build_signals(d))
         else:
-            sigs.append({'resp': data})
+            sigs.append(Signal({'resp': data}))
         return sigs
 
     def _init_access_token(self):
