@@ -98,7 +98,7 @@ class NioCommand(OAuth2ServiceAccount, Block):
             for d in data:
                 sigs.extend(self._build_signals(d))
         else:
-            sigs.append({'resp': data})
+            sigs.append(Signal({'resp': data}))
         return sigs
 
     def _init_access_token(self):
