@@ -1,0 +1,7 @@
+{
+  "nio/NioCommand": {
+    "Version": "1.0.0",
+    "Reference": "github.com/nio-blocks/nio_command.git@v1.0.0",
+    "Language": "Python"
+  }
+}
