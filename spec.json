@@ -1,53 +1,10 @@
 {
   "nio/NioCommand": {
-    "Commands": {},
-    "Dependencies": [],
-    "Description": "",
-    "Input": "",
-    "Output": "",
-    "Properties": {
-      "Block Name (optional)": {
-        "description": ""
-      },
-      "Command Name": {
-        "description": ""
-      },
-      "Command Parameters": {
-        "description": ""
-      },
-      "Credentials (BasicAuth)": {
-        "default": {
-          "password": "",
-          "username": ""
-        },
-        "description": ""
-      },
-      "Private Key Config File": {
-        "default": "etc/private_key.json",
-        "description": ""
-      },
-      "Reauthenticate Interval": {
-        "default": {
-          "seconds": 2400
-        },
-        "description": ""
-      },
-      "Security Method": {
-        "default": "basic",
-        "description": ""
-      },
-      "Service Name": {
-        "description": ""
-      },
-      "n.io Host": {
-        "default": "[[NIOHOST]]",
-        "description": ""
-      },
-      "n.io Port": {
-        "default": "[[NIOPORT]]",
-        "description": ""
-      }
-    },
-    "Version": "0.0.0"
+    "version": "0.0.1",
+    "description": "",
+    "inputs": {},
+    "outputs": {},
+    "properties": {},
+    "commands": {}
   }
 }
