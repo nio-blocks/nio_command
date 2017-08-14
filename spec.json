@@ -1,10 +1,84 @@
 {
   "nio/NioCommand": {
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "",
-    "inputs": {},
-    "outputs": {},
-    "properties": {},
+    "properties": {
+      "basic_auth_creds": {
+        "title": "Credentials (BasicAuth)",
+        "type": "ObjectType",
+        "description": "When using Basic Authentication, enter the username and password.",
+        "default": {
+          "password": "",
+          "username": ""
+        }
+      },
+      "block_name": {
+        "title": "Block Name (optional)",
+        "type": "Type",
+        "description": "Name of block to command. If blank, then the service will be commanded.",
+        "default": ""
+      },
+      "command_name": {
+        "title": "Command Name",
+        "type": "Type",
+        "description": "Name of service or block command.",
+        "default": ""
+      },
+      "host": {
+        "title": "n.io Host",
+        "type": "StringType",
+        "description": "Location of nio instance.",
+        "default": "[[NIOHOST]]"
+      },
+      "key_config_file": {
+        "title": "Private Key Config File",
+        "type": "FileType",
+        "description": "When using OAuth, enter the location of the Service Account JSON key file. The path is relative to the root of the nio project. (ex. `etc/private_key.json`)",
+        "default": "etc/private_key.json"
+      },
+      "params": {
+        "title": "Command Parameters",
+        "type": "ListType",
+        "description": "Key/Value pairs to pass as parameters to the command.",
+        "default": []
+      },
+      "port": {
+        "title": "n.io Port",
+        "type": "IntType",
+        "description": "Port of nio instance.",
+        "default": "[[NIOPORT]]"
+      },
+      "reauth_interval": {
+        "title": "Reauthenticate Interval",
+        "type": "TimeDeltaType",
+        "description": "How frequently to re-authenticate OAuth login.",
+        "default": {
+          "seconds": 2400
+        }
+      },
+      "security_method": {
+        "title": "Security Method",
+        "type": "SelectType",
+        "description": "HTTP Method (ex. NONE, BASIC (default), OAUTH).",
+        "default": "basic"
+      },
+      "service_name": {
+        "title": "Service Name",
+        "type": "Type",
+        "description": "Name of service to command.",
+        "default": ""
+      }
+    },
+    "inputs": {
+      "default": {
+        "description": "Any list of signals."
+      }
+    },
+    "outputs": {
+      "default": {
+        "description": "One output signal will be created for each command (and therefore one for each input signal).  If the command response is json, then the Signal representation of the json will be emitted.  If the command response is not json, then the Signals will have an attribtue `resp` with the text representaion of the response as the value."
+      }
+    },
     "commands": {}
   }
 }

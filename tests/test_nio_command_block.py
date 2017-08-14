@@ -1,9 +1,11 @@
-from nio.signal.base import Signal
 from unittest.mock import MagicMock, patch
-from ..nio_command_block import NioCommand, OAuth2Exception, SecurityMethod
-from nio.testing.block_test_case import NIOBlockTestCase
 from requests import Response
 from collections import OrderedDict
+
+from nio.signal.base import Signal
+from nio.testing.block_test_case import NIOBlockTestCase
+
+from ..nio_command_block import NioCommand, OAuth2Exception, SecurityMethod
 
 
 class TestNioCommandBlock(NIOBlockTestCase):
@@ -159,4 +161,3 @@ class TestNioCommandBlock(NIOBlockTestCase):
         params = block._get_params(Signal())
         self.assertEqual(params['param1'], 'value1')
         self.assertEqual(params['param2'], 'value2')
-
