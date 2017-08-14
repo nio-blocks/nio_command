@@ -30,8 +30,8 @@ Commands
 
 Dependencies
 ------------
+- requests
 - [oauth2client](https://github.com/google/oauth2client)
-- [pycrypto](https://pypi.python.org/pypi/pycrypto) or [pyopenssl](https://pypi.python.org/pypi/pyOpenSSL)
 
 
 ## Getting Started with OAuth

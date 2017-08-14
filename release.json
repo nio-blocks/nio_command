@@ -1,7 +1,7 @@
 {
   "nio/NioCommand": {
     "language": "Python",
-    "url": "git@github.com:nio-blocks/nio_command.git",
+    "url": "git@github.com:nio-blocks/nio_command.git@v0.1.0",
     "version": "0.1.0"
   }
 }

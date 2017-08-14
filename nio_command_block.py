@@ -84,8 +84,10 @@ class NioCommand(OAuth2ServiceAccount, Block):
     def _process_response(self, resp):
         status = resp.status_code
         if status != 200:
-            self.logger.error("Status {0} returned while requesting : {1}"
-                               .format(status, resp))
+            self.logger.error(
+                "Status {0} returned while requesting : {1}".format(
+                    status, resp)
+            )
         try:
             data = resp.json()
         except:
@@ -164,7 +166,7 @@ class NioCommand(OAuth2ServiceAccount, Block):
         return url, headers
 
     def _get_headers(self):
-        headers = { "Content-Type": "application/json" }
+        headers = {"Content-Type": "application/json"}
         if self.security_method() == SecurityMethod.OAUTH:
             headers.update(self.get_access_token_headers())
         if self.security_method() == SecurityMethod.BASIC:

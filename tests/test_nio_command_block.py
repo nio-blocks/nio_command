@@ -161,4 +161,3 @@ class TestNioCommandBlock(NIOBlockTestCase):
         params = block._get_params(Signal())
         self.assertEqual(params['param1'], 'value1')
         self.assertEqual(params['param2'], 'value2')
-
