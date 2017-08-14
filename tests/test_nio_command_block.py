@@ -1,9 +1,11 @@
-from nio.signal.base import Signal
 from unittest.mock import MagicMock, patch
-from ..nio_command_block import NioCommand, OAuth2Exception, SecurityMethod
-from nio.testing.block_test_case import NIOBlockTestCase
 from requests import Response
 from collections import OrderedDict
+
+from nio.signal.base import Signal
+from nio.testing.block_test_case import NIOBlockTestCase
+
+from ..nio_command_block import NioCommand, OAuth2Exception, SecurityMethod
 
 
 class TestNioCommandBlock(NIOBlockTestCase):

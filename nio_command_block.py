@@ -1,13 +1,15 @@
 import base64
 import requests
 from enum import Enum
+from urllib.parse import urlencode
+
 from nio.properties import IntProperty, ListProperty, \
     SelectProperty, ObjectProperty, PropertyHolder, StringProperty, \
-    TimeDeltaProperty, Property
+    TimeDeltaProperty, Property, VersionProperty
 from nio.block.base import Block
 from nio.signal.base import Signal
 from nio.modules.scheduler import Job
-from urllib.parse import urlencode
+
 from .oauth2_mixin.oauth2_base import OAuth2Exception
 from .oauth2_mixin.oauth2_service import OAuth2ServiceAccount
 
@@ -30,6 +32,7 @@ class BasicAuthCreds(PropertyHolder):
 
 class NioCommand(OAuth2ServiceAccount, Block):
 
+    version = VersionProperty("0.1.0")
     params = ListProperty(URLParameter,
                           title="Command Parameters",
                           default=[])
