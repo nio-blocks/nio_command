@@ -32,7 +32,7 @@ class BasicAuthCreds(PropertyHolder):
 
 class NioCommand(OAuth2ServiceAccount, Block):
 
-    version = VersionProperty("0.1.0")
+    version = VersionProperty("0.1.1")
     params = ListProperty(URLParameter,
                           title="Command Parameters",
                           default=[])
