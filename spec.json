@@ -2,6 +2,9 @@
   "nio/NioCommand": {
     "version": "0.1.1",
     "description": "",
+    "categories": [
+      "Communication"
+    ],
     "properties": {
       "basic_auth_creds": {
         "title": "Credentials (BasicAuth)",
