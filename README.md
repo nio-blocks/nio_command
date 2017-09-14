@@ -1,6 +1,6 @@
 NioCommand
 ==========
-
+Block that sends HTTP requests to trigger commands on blocks (or services) in the same instance.
 
 Properties
 ----------
