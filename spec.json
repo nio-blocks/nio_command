@@ -1,7 +1,7 @@
 {
   "nio/NioCommand": {
     "version": "0.1.1",
-    "description": "",
+    "description": "Block that sends HTTP requests to trigger commands on blocks (or services) in the same instance.",
     "categories": [
       "Communication"
     ],
