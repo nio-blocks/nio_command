@@ -79,7 +79,7 @@
     },
     "outputs": {
       "default": {
-        "description": "One output signal will be created for each command (and therefore one for each input signal).  If the command response is json, then the Signal representation of the json will be emitted.  If the command response is not json, then the Signals will have an attribtue `resp` with the text representaion of the response as the value."
+        "description": "One output signal will be created for each command (and therefore one for each input signal).  If the command response is JSON, then the Signal representation of the JSON will be emitted.  If the command response is not JSON, then the Signals will have an attribtue `resp` with the text representaion of the response as the value."
       }
     },
     "commands": {}
