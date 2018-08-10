@@ -11,8 +11,8 @@
         "type": "ObjectType",
         "description": "When using Basic Authentication, enter the username and password.",
         "default": {
-          "password": "",
-          "username": ""
+          "username": "",
+          "password": ""
         }
       },
       "block_name": {

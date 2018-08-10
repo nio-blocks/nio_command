@@ -1,2 +1,2 @@
-requests
-oauth2client
+requests~=2.0
+oauth2client~=4.1.2
